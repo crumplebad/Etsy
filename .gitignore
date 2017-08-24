@@ -1,1 +1,6 @@
 /Carthage/**
+/build/**
+/Etsy.xcodeproj/xcuserdata
+/Etsy.xcodeproj/xcuserdata/**
+/Etsy.xcodeproj/project.xcworkspace/xcuserdata
+/Etsy.xcodeproj/project.xcworkspace/xcuserdata/**
