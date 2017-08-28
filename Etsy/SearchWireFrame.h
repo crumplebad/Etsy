@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import "SearchProtocols.h"
 #import "SearchViewController.h"
 #import "SearchAPIDataManager.h"
 #import "SearchInteractor.h"
 #import "SearchPresenter.h"
 #import "SearchWireFrame.h"
-#import <UIKit/UIKit.h>
 
 @interface SearchWireFrame : NSObject <SearchWireFrameProtocol>
 

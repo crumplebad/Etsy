@@ -25,42 +25,50 @@
 @end
 
 @protocol SearchViewProtocol
-- (void)searchResultsListReturned:(NSArray *)searchResults;
 @required
 @property (nonatomic, strong) id <SearchPresenterProtocol> presenter;
+
+- (void)searchResultsListReturned:(NSArray *)searchResults withErrorMessage:(NSString *)errorMessage;
 
 @end
 
 @protocol SearchPresenterProtocol
-- (void)getSearchResultsListFor:(NSString *)searchString pageNumber:(int)pageNumber;
 @required
 @property (nonatomic, weak) id <SearchViewProtocol> view;
 @property (nonatomic, strong) id <SearchInteractorInputProtocol> interactor;
 @property (nonatomic, strong) id <SearchWireFrameProtocol> wireFrame;
 
+- (void)getSearchResultsListFor:(NSString *)searchString pageNumber:(int)pageNumber;
+
 @end
 
 @protocol SearchInteractorOutputProtocol
-- (void)searchResultsReturned:(NSArray *)searchResults;
+
+- (void)searchResultsReturned:(NSArray *)searchResults withErrorMessage:(NSString *)errorMessage;;
 
 @end
 
 @protocol SearchInteractorInputProtocol
-- (void)getSearchResultsFor:(NSString *)searchString pageNumber:(int)pageNumber;
+
 @required
 @property (nonatomic, weak) id <SearchInteractorOutputProtocol> presenter;
 @property (nonatomic, strong) id <SearchAPIDataManagerInputProtocol> APIDataManager;
 
+- (void)getSearchResultsFor:(NSString *)searchString pageNumber:(int)pageNumber;
+
 @end
 
 @protocol SearchAPIDataManagerOutputProtocol
+
 - (void)searchResultsFromServerReturned:(NSArray *)searchResults;
 
 @end
 
 @protocol SearchAPIDataManagerInputProtocol
-- (void)getSearchResultsFromServerFor:(NSString *)searchString pageNumber:(int)pageNumber;
+
 @required
 @property (nonatomic, weak) id <SearchAPIDataManagerOutputProtocol> interactor;
+
+- (void)getSearchResultsFromServerFor:(NSString *)searchString pageNumber:(int)pageNumber;
 
 @end

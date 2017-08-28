@@ -7,17 +7,17 @@
 //
 
 #import "SearchViewController.h"
+#import "Utility.h"
 
 @implementation SearchViewController {
-    NSMutableArray *resultsDataSource;
-
     __weak IBOutlet UISearchBar *productSearchBar;
     __weak IBOutlet UITableView *resultTableView;
-    int pageNumberToRequest;
     UIActivityIndicatorView *bottomActivityIndicator;
+    NSMutableArray *resultsDataSource;
     BOOL isWaitingForResponse;
-    int lastResponseCount;
+    int pageNumberToRequest;
     NSString *searchString;
+    int lastResponseCount;
 }
 
 - (NSMutableArray *)resultsDataSource {
@@ -68,13 +68,17 @@
     [self.presenter getSearchResultsListFor:searchString pageNumber:pageNumber];
 }
 
-- (void)searchResultsListReturned:(NSArray *)searchResults {
+- (void)searchResultsListReturned:(NSArray *)searchResults withErrorMessage:(NSString *)errorMessage {
     [bottomActivityIndicator stopAnimating];
     isWaitingForResponse = NO;
    
-    if ([searchResults count] > 0) {
-        [[self resultsDataSource] addObjectsFromArray:searchResults];
-        [resultTableView reloadData];
+    if (!errorMessage) {
+        if ([searchResults count] > 0) {
+            [[self resultsDataSource] addObjectsFromArray:searchResults];
+            [resultTableView reloadData];
+        }
+    } else {
+        [Utility showErrorMessage:errorMessage onViewController:self];
     }
 }
 
@@ -103,7 +107,7 @@
     CGFloat contentHeight = scrollView.contentSize.height;
     
     if (offsetY + 200 > contentHeight - scrollView.frame.size.height) {
-        if (!isWaitingForResponse && ![searchString isEqualToString:@""]) {
+        if (!isWaitingForResponse && ![[searchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
             pageNumberToRequest += 1;
             [self getSearchResultsListForPageNumber:pageNumberToRequest];
         }

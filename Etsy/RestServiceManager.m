@@ -7,8 +7,7 @@
 //
 
 #import "RestServiceManager.h"
-
-static NSString *const EtsyAPIBaseURLString = @"https://api.etsy.com/";
+#import "Constants.h"
 
 @implementation RestServiceManager
 
@@ -16,7 +15,7 @@ static NSString *const EtsyAPIBaseURLString = @"https://api.etsy.com/";
     static RestServiceManager *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[RestServiceManager alloc] initWithBaseURL:[NSURL URLWithString:EtsyAPIBaseURLString]];
+        _sharedClient = [[RestServiceManager alloc] initWithBaseURL:[NSURL URLWithString:kEtsyAPIBaseURLString]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     });
     

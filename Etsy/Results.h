@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Result.h"
 
 @interface Results : NSObject
 

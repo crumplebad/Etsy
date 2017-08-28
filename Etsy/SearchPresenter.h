@@ -17,7 +17,4 @@
 @property (nonatomic, strong) id <SearchInteractorInputProtocol> interactor;
 @property (nonatomic, strong) id <SearchWireFrameProtocol> wireFrame;
 
-- (void)getSearchResultsListFor:(NSString *)searchString pageNumber:(int)pageNumber;
-- (void)searchResultsReturned:(NSArray *)searchResults;
-
 @end

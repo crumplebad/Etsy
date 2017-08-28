@@ -32,13 +32,17 @@
     if (lastResultSize == kPageSize) {
         [self.APIDataManager getSearchResultsFromServerFor:searchString pageNumber:pageNumber];
     } else {
-       [self.presenter searchResultsReturned:[NSArray new]];
+       [self.presenter searchResultsReturned:[NSArray new] withErrorMessage:nil];
     }
 }
 
 - (void)searchResultsFromServerReturned:(NSArray *)searchResults {
-    lastResultSize = [searchResults count];
-    [self.presenter searchResultsReturned:searchResults];
+    if (searchResults) {
+        lastResultSize = [searchResults count];
+        [self.presenter searchResultsReturned:searchResults withErrorMessage:nil];
+    } else {
+        [self.presenter searchResultsReturned:[NSArray new] withErrorMessage:@"Something went wrong.\n Please try again later"];//Fetch the user understandable  error text and pass it here.
+    }
 }
 
 @end

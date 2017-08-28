@@ -10,10 +10,8 @@
 
 @implementation Result
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-    if (self = [super init])
-    {
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
         self.resultTitle = [dictionary objectForKey:@"title"];
         self.resultDescription = [dictionary objectForKey:@"description"];
         self.resultImage = [[dictionary objectForKey:@"MainImage"] objectForKey:@"url_170x135"];

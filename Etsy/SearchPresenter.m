@@ -16,8 +16,8 @@
     [self.interactor getSearchResultsFor:searchString pageNumber:pageNumber];
 }
 
-- (void)searchResultsReturned:(NSArray *)searchResults {
-    [self.view searchResultsListReturned:searchResults];
+- (void)searchResultsReturned:(NSArray *)searchResults withErrorMessage:(NSString *)errorMessage {
+    [self.view searchResultsListReturned:searchResults withErrorMessage:errorMessage];
 }
 
 @end

@@ -14,7 +14,4 @@
 @property (nonatomic, weak) id <SearchInteractorOutputProtocol> presenter;
 @property (nonatomic, strong) id <SearchAPIDataManagerInputProtocol> APIDataManager;
 
-- (void)getSearchResultsFor:(NSString *)searchString pageNumber:(int)pageNumber;
-- (void)searchResultsFromServerReturned:(NSArray *)searchResults;
-
 @end

@@ -12,6 +12,7 @@
 @interface Utility : NSObject
 
 + (NSString *)getAPIKey;
++ (void)showErrorMessage:(NSString *)errorMessage onViewController:(UIViewController *)viewController;
 
 @end
 

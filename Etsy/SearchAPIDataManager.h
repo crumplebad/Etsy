@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SearchProtocols.h"
-#import "RestServiceManager.h"
-#import "SearchProtocols.h"
-#import "Results.h"
 
 @interface SearchAPIDataManager : NSObject <SearchAPIDataManagerInputProtocol>
 

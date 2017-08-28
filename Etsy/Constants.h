@@ -7,5 +7,4 @@
 //
 
 #define kPageSize 30
-
-#define kAPIKey @"813nal68fngdw77h8ezeo9tt"
+#define kEtsyAPIBaseURLString @"https://api.etsy.com/"

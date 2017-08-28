@@ -7,8 +7,10 @@
 //
 
 #import "SearchAPIDataManager.h"
+#import "RestServiceManager.h"
 #import "Constants.h"
 #import "Utility.h"
+#import "Results.h"
 
 @implementation SearchAPIDataManager
 
@@ -24,9 +26,11 @@
 
         if (self.interactor) {
             [self.interactor searchResultsFromServerReturned:results.value];
+        } else {
+            [self.interactor searchResultsFromServerReturned:nil];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        
+        [self.interactor searchResultsFromServerReturned:nil];
     }];
 }
 

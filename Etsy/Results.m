@@ -7,13 +7,14 @@
 //
 
 #import "Results.h"
+#import "Result.h"
 
 @implementation Results
 
 - (id)initWithArray:(NSArray *)array {
-    
     if (self = [super init]) {
         NSMutableArray *anArray = [NSMutableArray new];
+        
         for (id object in array) {
             [anArray addObject:[[Result alloc] initWithDictionary:object]];
         }

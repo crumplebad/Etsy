@@ -29,7 +29,7 @@
                         <outlet property="delegate" destination="-1" id="vgc-lq-L7G"/>
                     </connections>
                 </tableView>
-                <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Enter here to search." translatesAutoresizingMaskIntoConstraints="NO" id="Eca-nk-TZb">
+                <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Your search...starts here" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-nk-TZb">
                     <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                     <scopeButtonTitles>
