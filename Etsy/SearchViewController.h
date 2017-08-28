@@ -14,6 +14,4 @@
 
 @property (nonatomic, strong) id <SearchPresenterProtocol> presenter;
 
-- (void)getSearchResultsListForPageNumber:(int)pageNumber;
-
 @end
