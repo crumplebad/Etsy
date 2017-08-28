@@ -13,28 +13,16 @@
     __weak IBOutlet UISearchBar *productSearchBar;
     __weak IBOutlet UITableView *resultTableView;
     UIActivityIndicatorView *bottomActivityIndicator;
-    NSMutableArray *resultsDataSource;
-    BOOL isWaitingForResponse;
-    int pageNumberToRequest;
-    NSString *searchString;
-    int lastResponseCount;
-}
-
-- (NSMutableArray *)resultsDataSource {
-    if (!resultsDataSource) {
-        resultsDataSource = [NSMutableArray new];
-    }
-
-    return resultsDataSource;
 }
 
 #pragma mark - ViewController Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    pageNumberToRequest = 1;
-    searchString = @"";
     [resultTableView registerNib:[UINib nibWithNibName:@"ResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"ResultTableViewCell"];
+    resultTableView.delegate = self.presenter;
+    resultTableView.dataSource = self.presenter;
+    productSearchBar.delegate = self.presenter;
     [self configureBottomRefreshControl];
     [self addTapToDismissKeyboard];
 }
@@ -62,19 +50,11 @@
     [self.view addGestureRecognizer:tap];
 }
 
-- (void)getSearchResultsListForPageNumber:(int)pageNumber {
-    [bottomActivityIndicator startAnimating];
-    isWaitingForResponse = YES;
-    [self.presenter getSearchResultsListFor:searchString pageNumber:pageNumber];
-}
-
 - (void)searchResultsListReturned:(NSArray *)searchResults withErrorMessage:(NSString *)errorMessage {
     [bottomActivityIndicator stopAnimating];
-    isWaitingForResponse = NO;
    
     if (!errorMessage) {
         if ([searchResults count] > 0) {
-            [[self resultsDataSource] addObjectsFromArray:searchResults];
             [resultTableView reloadData];
         }
     } else {
@@ -82,52 +62,20 @@
     }
 }
 
-#pragma mark - TableView
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [resultsDataSource count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *simpleTableIdentifier = @"ResultTableViewCell";
-    ResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
-    if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ResultTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    Result *result = [resultsDataSource objectAtIndex:indexPath.row];
-    [cell setCellWith:result];
-
-    return cell;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    CGFloat contentHeight = scrollView.contentSize.height;
-    
-    if (offsetY + 200 > contentHeight - scrollView.frame.size.height) {
-        if (!isWaitingForResponse && ![[searchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
-            pageNumberToRequest += 1;
-            [self getSearchResultsListForPageNumber:pageNumberToRequest];
-        }
-    }
-}
-
-#pragma mark - SearchBar
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    pageNumberToRequest = 1;
-    [resultsDataSource removeAllObjects];
-    [resultTableView reloadData];
-    [bottomActivityIndicator startAnimating];
-    searchString = productSearchBar.text;
-    [self getSearchResultsListForPageNumber:pageNumberToRequest];
-}
-
 - (void)dismissKeyboard {
     [productSearchBar resignFirstResponder];
+}
+
+- (void)refreshTable {
+    [resultTableView reloadData];
+}
+
+- (void)animateIndicator:(BOOL)isStart {
+    if (isStart) {
+        [bottomActivityIndicator startAnimating];
+    } else {
+        [bottomActivityIndicator stopAnimating];
+    }
 }
 
 @end

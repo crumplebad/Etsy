@@ -10,8 +10,11 @@
 #import "SearchProtocols.h"
 #import "ResultTableViewCell.h"
 
-@interface SearchViewController : UIViewController <SearchViewProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface SearchViewController : UIViewController <SearchViewProtocol>
 
-@property (nonatomic, strong) id <SearchPresenterProtocol> presenter;
+@property (nonatomic, strong) id <SearchPresenterProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> presenter;
+
+- (void)refreshTable;
+- (void)animateIndicator:(BOOL)isStart;
 
 @end

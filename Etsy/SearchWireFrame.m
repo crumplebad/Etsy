@@ -13,7 +13,7 @@
 + (UIViewController<SearchViewProtocol> *)getSearchModuleView {
     // Generating module components
     SearchViewController <SearchViewProtocol> *view = [[SearchViewController alloc] init];
-    id <SearchPresenterProtocol, SearchInteractorOutputProtocol> presenter = [SearchPresenter new];
+    id <SearchPresenterProtocol, SearchInteractorOutputProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> presenter = [SearchPresenter new];
     id <SearchInteractorInputProtocol, SearchAPIDataManagerOutputProtocol> interactor = [SearchInteractor new];
     id <SearchAPIDataManagerInputProtocol> APIDataManager = [SearchAPIDataManager new];
     id <SearchWireFrameProtocol> wireFrame = [SearchWireFrame new];
