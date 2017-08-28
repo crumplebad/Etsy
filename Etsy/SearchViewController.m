@@ -55,7 +55,7 @@
    
     if (!errorMessage) {
         if ([searchResults count] > 0) {
-            [resultTableView reloadData];
+            [self refreshTable];
         }
     } else {
         [Utility showErrorMessage:errorMessage onViewController:self];
