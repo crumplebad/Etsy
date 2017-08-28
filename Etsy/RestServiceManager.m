@@ -8,7 +8,7 @@
 
 #import "RestServiceManager.h"
 
-static NSString * const EtsyAPIBaseURLString = @"https://api.etsy.com/v2/listings/active";
+static NSString *const EtsyAPIBaseURLString = @"https://api.etsy.com/";
 
 @implementation RestServiceManager
 

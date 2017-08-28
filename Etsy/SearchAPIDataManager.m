@@ -18,7 +18,7 @@
     NSString *formattedString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSDictionary *paramDictionary = @{@"api_key": [Utility getAPIKey], @"includes":@"MainImage", @"limit": @kPageSize, @"keywords" : formattedString, @"page" : [NSString stringWithFormat:@"%i", pageNumber]};
     
-    [[RestServiceManager sharedClient] GET:@"" parameters:paramDictionary progress:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    [[RestServiceManager sharedClient] GET:@"v2/listings/active" parameters:paramDictionary progress:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
         NSArray *resultsResponse = [JSON valueForKeyPath:@"results"];
         Results *results = [[Results alloc] initWithArray:resultsResponse];
 
