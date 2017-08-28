@@ -14,7 +14,7 @@ Etsy app uses VIPER (View, Interactor, Presenter, Entity, Router aka WireFrame) 
 > Keep improving.
 - add Unit tests.
 - add Custom Error Objects instead of NSString.
-
+- make view controller lighter by moving some of its responsibility to the presenter. 
 
 ### Version
 1.0.0
@@ -37,7 +37,7 @@ $ carthage update --platform iOS
 Etsy app uses Carthage instead of CocoaPods for the simplicity and ease of use. Its very easy to replace Carthage by other dependency managers, unlike CocoaPods .
 
 ### Extra Note
-<prject folder>/StyleSettings.plist is used for [Objective Clean]. This [average style] setting provided by Objective Clean. Rename Etsy.BACKUPxcodeproj to Etsy.xcodeproj to run Objective Clean. Objective Clean is available on [AppStore].
+    StyleSettings.plist is used for [Objective Clean]. This [average style] setting is provided by Objective Clean. Rename Etsy.BACKUPxcodeproj to Etsy.xcodeproj to run Objective Clean. Objective Clean is available on [AppStore].
 
 
 [Carthage]:<https://github.com/Carthage/Carthage>
