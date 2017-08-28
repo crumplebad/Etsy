@@ -36,7 +36,7 @@
     searchString = @"";
     [resultTableView registerNib:[UINib nibWithNibName:@"ResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"ResultTableViewCell"];
     [self configureBottomRefreshControl];
-    [self addTapToDismissKeyboar];
+    [self addTapToDismissKeyboard];
 }
 
 #pragma mark - Utility
@@ -55,7 +55,7 @@
     [bottomActivityIndicator stopAnimating];
 }
 
-- (void)addTapToDismissKeyboar {
+- (void)addTapToDismissKeyboard {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
