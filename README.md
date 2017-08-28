@@ -36,7 +36,12 @@ $ carthage update --platform iOS
 ```
 Etsy app uses Carthage instead of CocoaPods for the simplicity and ease of use. Its very easy to replace Carthage by other dependency managers, unlike CocoaPods .
 
+### Extra Note
+<prject folder>/StyleSettings.plist is used for [Objective Clean]. This [average style] setting provided by Objective Clean. Rename Etsy.BACKUPxcodeproj to Etsy.xcodeproj to run Objective Clean. Objective Clean is available on [AppStore].
 
 
 [Carthage]:<https://github.com/Carthage/Carthage>
 [AFNetworking]: <http://afnetworking.com>
+[Objective Clean]:<http://objclean.com/index.php>
+[AppStore]:<https://itunes.apple.com/us/app/objective-clean/id713910413?ls=1&mt=12>
+[average style]:<http://objclean.com/survey.php>
