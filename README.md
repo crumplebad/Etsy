@@ -14,7 +14,6 @@ Etsy app uses VIPER (View, Interactor, Presenter, Entity, Router aka WireFrame) 
 > Keep improving.
 - add Unit tests.
 - add Custom Error Objects instead of NSString.
-- make view controller lighter by moving some of its responsibility to the presenter. 
 
 ### Version
 1.0.0
