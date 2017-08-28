@@ -21,6 +21,7 @@
 @protocol SearchWireFrameProtocol
 @required
 + (UIViewController<SearchViewProtocol> *)getSearchModuleView;
+
 @end
 
 @protocol SearchViewProtocol
@@ -41,6 +42,7 @@
 
 @protocol SearchInteractorOutputProtocol
 - (void)searchResultsReturned:(NSArray *)searchResults;
+
 @end
 
 @protocol SearchInteractorInputProtocol

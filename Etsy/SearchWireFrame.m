@@ -16,7 +16,7 @@
     id <SearchPresenterProtocol, SearchInteractorOutputProtocol> presenter = [SearchPresenter new];
     id <SearchInteractorInputProtocol, SearchAPIDataManagerOutputProtocol> interactor = [SearchInteractor new];
     id <SearchAPIDataManagerInputProtocol> APIDataManager = [SearchAPIDataManager new];
-    id <SearchWireFrameProtocol> wireFrame= [SearchWireFrame new];
+    id <SearchWireFrameProtocol> wireFrame = [SearchWireFrame new];
 
     // Connecting
     view.presenter = presenter;

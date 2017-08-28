@@ -28,6 +28,7 @@
         lastSearchText = searchString;
         lastResultSize = kPageSize;
     }
+    
     if (lastResultSize == kPageSize) {
         [self.APIDataManager getSearchResultsFromServerFor:searchString pageNumber:pageNumber];
     } else {

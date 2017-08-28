@@ -24,6 +24,7 @@
     if (!resultsDataSource) {
         resultsDataSource = [NSMutableArray new];
     }
+
     return resultsDataSource;
 }
 
@@ -37,7 +38,9 @@
     [self configureBottomRefreshControl];
     [self addTapToDismissKeyboar];
 }
+
 #pragma mark - Utility
+
 - (void)configureBottomRefreshControl {
     bottomActivityIndicator = [UIActivityIndicatorView new];
     [bottomActivityIndicator setHidesWhenStopped:YES];
@@ -68,23 +71,24 @@
 - (void)searchResultsListReturned:(NSArray *)searchResults {
     [bottomActivityIndicator stopAnimating];
     isWaitingForResponse = NO;
-    if ([searchResults count] > 0) {        
+   
+    if ([searchResults count] > 0) {
         [[self resultsDataSource] addObjectsFromArray:searchResults];
         [resultTableView reloadData];
     }
 }
 
 #pragma mark - TableView
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [resultsDataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
     static NSString *simpleTableIdentifier = @"ResultTableViewCell";
     ResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (!cell)
-    {
+
+    if (!cell) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ResultTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
@@ -97,6 +101,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
     CGFloat contentHeight = scrollView.contentSize.height;
+    
     if (offsetY + 200 > contentHeight - scrollView.frame.size.height) {
         if (!isWaitingForResponse && ![searchString isEqualToString:@""]) {
             pageNumberToRequest += 1;
@@ -106,6 +111,7 @@
 }
 
 #pragma mark - SearchBar
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     pageNumberToRequest = 1;
@@ -116,7 +122,7 @@
     [self getSearchResultsListForPageNumber:pageNumberToRequest];
 }
 
-- (void) dismissKeyboard {
+- (void)dismissKeyboard {
     [productSearchBar resignFirstResponder];
 }
 
